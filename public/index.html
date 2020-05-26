@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <script src="./js/index.js" defer></script>
+    <!-- <script src="./js/index.js" defer type="module"></script> -->
+    <script src="./js/index.js" defer ></script>
     <title>Document</title>
 </head>
 
 <body>
     <div class="content">
-        <img src="./img/5.gif" class="content__gif" id="gif" alt='no gif'/>
+        <img src="./img/5.gif" class="content__gif" id="gif" alt='no gif' />
         <span class="content__title">Formulario de Alta</span>
         <form class="content__form" id='form' onsubmit="guardar(event)">
             <fieldset class="content__form-fieldset">
@@ -34,10 +35,9 @@
                     <input class="content__form-input" name='descripcion' id="descripcion" type="text" id="myText"
                         placeholder="Descripción" />
                     <label class="content__form-label">PRECIO:</label>
-                    <input class="content__form-input" name='precio' type="text" id="precio"
-                        placeholder="Precio" />
+                    <input class="content__form-input" name='precio' type="text" id="precio" placeholder="Precio" />
                     <label class="content__form-label">CANTIDAD DE BANOS:</label>
-                    <input class="content__form-input" type="number" name="banos" min="1" id="banos" >
+                    <input class="content__form-input" type="number" name="banos" min="1" id="banos">
                     <!-- <select name="banos" id="cars">
                         <option value="uno">1</option>
                         <option value="dos">2</option>

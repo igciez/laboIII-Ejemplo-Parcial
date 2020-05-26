@@ -12,6 +12,8 @@
 
 .content__gif{
     visibility: hidden;
+    position: absolute;
+    top: 50%;
 }
 
 .content__title{

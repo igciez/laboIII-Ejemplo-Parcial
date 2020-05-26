@@ -1,50 +1,5 @@
-// let personas = [
-//     {
-//         id: 1,
-//         titulo: 'titulo',
-//         transaccion: 'venta',
-//         descripcion: 'Descripción',
-//         precio: 'precio',
-//         cantidadB: 2,
-//         cantidadD: 1,
-//     },
-//     {
-//         id: 2,
-//         titulo: 'titulo',
-//         transaccion: 'venta',
-//         descripcion: 'Descripción',
-//         precio: 'precio',
-//         cantidadB: 4,
-//         cantidadD: 2
-//     },
-//     {
-//         id: 3,
-//         titulo: 'titulo',
-//         transaccion: 'alquiler',
-//         descripcion: 'Descripción',
-//         precio: 'precio',
-//         cantidadB: 1,
-//         cantidadD: 1
-//     },
-//     {
-//         id: 4,
-//         titulo: 'titulo',
-//         transaccion: 'alquiler',
-//         descripcion: 'Descripción',
-//         precio: 'precio',
-//         cantidadB: 3,
-//         cantidadD: 1
-//     },
-//     {
-//         id: 5,
-//         titulo: 'titulo',
-//         transaccion: 'venta',
-//         descripcion: 'Descripción',
-//         precio: 'precio',
-//         cantidadB: 2,
-//         cantidadD: 3
-//     },
-// ];
+//import { saludar } from './saludar.js';
+
 let personas;
 let indiceRow;
 let table = document.getElementById('table');
@@ -54,38 +9,44 @@ let fragmento = document.createDocumentFragment();
 let gif = document.getElementById('gif');
 
 
-
 /**
  * Ajax Traer
  */
 const traerAjax = async () => {
     //xhr
-    // let xhr = new XMLHttpRequest();
-    // gif.style.visibility = 'visible';
+    let xhr = new XMLHttpRequest();
+    gif.style.visibility = 'visible';
 
-    // xhr.onreadystatechange = () => {
-    //     if (xhr.readyState === 4) {
-    //         gif.style.visibility = 'hidden';
-    //         if (xhr.status === 200) {
-    //             personas = JSON.parse(xhr.responseText).data;
-    //             console.dir(personas)
-    //         } else {
-    //             console.log(xhr.status + " " + xhr.statusText);
-    //         }
-    //     }
-    // };
-    // xhr.open('GET', 'http://localhost:3000/traer');
-    // xhr.send();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            gif.style.visibility = 'hidden';
+            if (xhr.status === 200) {
+                //saludar();
+                personas = JSON.parse(xhr.responseText).data;
+                personas.forEach(element => {
+                    agregarRowTable(element);
+                });
+
+                table.appendChild(fragmento)
+                console.dir(personas)
+            } else {
+                console.log(xhr.status + " " + xhr.statusText);
+            }
+        }
+    };
+    xhr.open('GET', 'http://localhost:3000/traer', true);
+    xhr.send();
+
 
     //fetch
-    try {
-        let datos = await fetch('http://localhost:3000/traer')
-        let data = await datos.json();
-        console.log(data.data);
-        personas = data.data;
-    } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //     let datos = await fetch('http://localhost:3000/traer')
+    //     let data = await datos.json();
+    //     console.log(data.data);
+    //     personas = data.data;
+    // } catch (error) {
+    //     console.error(error);
+    // }
 }
 
 /***
@@ -93,35 +54,35 @@ const traerAjax = async () => {
  */
 const altaAjax = async (item) => {
     //xhr
-    // let xhr = new XMLHttpRequest();
-    // gif.style.visibility = 'visible';
+    let xhr = new XMLHttpRequest();
+    gif.style.visibility = 'visible';
 
-    // xhr.onreadystatechange = () => {
-    //     if (xhr.readyState === 4) {
-    //         gif.style.visibility = 'hidden';
-    //         if (xhr.status === 200) {
-    //             console.log(JSON.parse(xhr.responseText))
-    //         } else {
-    //             console.log(xhr.status + " " + xhr.statusText);
-    //         }
-    //     }
-    // };
-    // xhr.open('POST', 'http://localhost:3000/alta');
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.send(JSON.stringify(item));
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            gif.style.visibility = 'hidden';
+            if (xhr.status === 200) {
+                console.log(JSON.parse(xhr.responseText))
+            } else {
+                console.log(xhr.status + " " + xhr.statusText);
+            }
+        }
+    };
+    xhr.open('POST', 'http://localhost:3000/alta');
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(item));
 
     //fetch
-    try {
-        let datos = await fetch('http://localhost:3000/alta', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(item)
-        });
-        let data = await datos.json();
-        console.log(data.data);
-    } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //     let datos = await fetch('http://localhost:3000/alta', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(item)
+    //     });
+    //     let data = await datos.json();
+    //     console.log(data.data);
+    // } catch (error) {
+    //     console.error(error);
+    // }
 }
 
 /***
@@ -129,35 +90,35 @@ const altaAjax = async (item) => {
  */
 const modificarAjax = async (item) => {
     //xhr
-    // let xhr = new XMLHttpRequest();
-    // gif.style.visibility = 'visible';
+    let xhr = new XMLHttpRequest();
+    gif.style.visibility = 'visible';
 
-    // xhr.onreadystatechange = () => {
-    //     if (xhr.readyState === 4) {
-    //         gif.style.visibility = 'hidden';
-    //         if (xhr.status === 200) {
-    //             console.log(JSON.parse(xhr.responseText))
-    //         } else {
-    //             console.log(xhr.status + " " + xhr.statusText);
-    //         }
-    //     }
-    // };
-    // xhr.open('POST', 'http://localhost:3000/alta');
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.send(JSON.stringify(item));
-    //console.dir(JSON.stringify(item))
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            gif.style.visibility = 'hidden';
+            if (xhr.status === 200) {
+                console.log(JSON.parse(xhr.responseText))
+            } else {
+                console.log(xhr.status + " " + xhr.statusText);
+            }
+        }
+    };
+    xhr.open('POST', 'http://localhost:3000/modificar');
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(item));
+    console.dir(JSON.stringify(item))
     //fetch
-    try {
-        let datos = await fetch('http://localhost:3000/modificar', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(item)
-        });
-        let data = await datos.json();
-        console.log(data.data);
-    } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //     let datos = await fetch('http://localhost:3000/modificar', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(item)
+    //     });
+    //     let data = await datos.json();
+    //     console.log(data.data);
+    // } catch (error) {
+    //     console.error(error);
+    // }
 }
 
 
@@ -166,35 +127,36 @@ const modificarAjax = async (item) => {
  */
 const bajaAjax = async (id) => {
     //xhr
-    // let xhr = new XMLHttpRequest();
-    // gif.style.visibility = 'visible';
+    let xhr = new XMLHttpRequest();
+    //gif.style.visibility = 'visible';
 
-    // xhr.onreadystatechange = () => {
-    //     if (xhr.readyState === 4) {
-    //         gif.style.visibility = 'hidden';
-    //         if (xhr.status === 200) {
-    //             console.log(JSON.parse(xhr.responseText))
-    //         } else {
-    //             console.log(xhr.status + " " + xhr.statusText);
-    //         }
-    //     }
-    // };
-    // xhr.open('POST', 'http://localhost:3000/bajaAnuncio');
-    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // xhr.send(id);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+
+            if (xhr.status === 200) {
+                console.log(JSON.parse(xhr.responseText))
+            } else {
+                console.log(xhr.status + " " + xhr.statusText);
+            }
+        }
+    };
+    xhr.open('POST', 'http://localhost:3000/baja');
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`id=${id}`);
+    //gif.style.visibility = 'hidden';
 
     //fecth
-    try {
-        let datos = await fetch('http://localhost:3000/baja', {
-            method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `id=${id}`
-        });
-        let data = await datos.json();
-        console.log(data.data);
-    } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //     let datos = await fetch('http://localhost:3000/baja', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //         body: `id=${id}`
+    //     });
+    //     let data = await datos.json();
+    //     console.log(data.data);
+    // } catch (error) {
+    //     console.error(error);
+    // }
 }
 
 
@@ -219,26 +181,37 @@ const agregarRowTable = (element) => {
     fragmento.appendChild(copia);
 }
 
+//En caso de xhr no usar
 const cargarTabla = async () => {
     await traerAjax();
+
     console.dir(personas)
+    if (personas.length) {
+        personas.forEach(element => {
+            agregarRowTable(element);
+        });
 
-    personas.forEach(element => {
-        agregarRowTable(element);
-    });
-
-    table.appendChild(fragmento);
+        table.appendChild(fragmento);
+    }
 };
 
 //llamo a la funcion cargarTabla para que la carge la tabla
-cargarTabla();
+//cargarTabla();
+
+//Si xhr llamo traerAjax() en vez de  cargarTabla();
+traerAjax();
 
 /**
+ * !!!!En caso de usar modulos --> usar window!!!!
  * Setea el indice "indiceRow" y 
  * da visibilidad a los botones editar, eliminar y cancelar
  * @param {evento que proviene del onclick(this)} e 
  */
-const setIndex = (e) => {
+// window.setIndex = (e) => {
+//     boxButtons.style.visibility = 'visible';
+//     indiceRow = e.rowIndex;
+// };
+setIndex = (e) => {
     boxButtons.style.visibility = 'visible';
     indiceRow = e.rowIndex;
 };
@@ -263,12 +236,12 @@ const guardar = async (event) => {
     num_dormitorio = parseInt(document.getElementById("dormitorios").value);
 
     if (indiceRow) {
-        id=(personas[indiceRow-1].id).toString();
+        id = (personas[indiceRow - 1].id).toString();
         console.dir({ id, titulo, transaccion, descripcion, precio, num_estacionamiento, num_dormitorio })
         await modificarAjax({ id, titulo, transaccion, descripcion, precio, num_estacionamiento, num_dormitorio })
     } else {
         console.log('entra alta')
-        id=(personas.length + 1).toString();
+        id = (personas.length + 1).toString();
         console.dir({ id, titulo, transaccion, descripcion, precio, num_estacionamiento, num_dormitorio })
         await altaAjax({ id, titulo, transaccion, descripcion, precio, num_estacionamiento, num_dormitorio })
     };
@@ -311,7 +284,7 @@ const borrar = async () => {
     //table.deleteRow(indiceRow);
     boxButtons.style.visibility = 'hidden';
     //document.getElementById('form').reset();
-    await bajaAjax(personas[indiceRow-1].id);
+    await bajaAjax(personas[indiceRow - 1].id);
 };
 
 const cancelar = () => {
