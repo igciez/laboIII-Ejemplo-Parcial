@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <script src="./js/index.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <span class="content__title">Formulario de Alta</span>
+        <form class="content__form" id='form' onsubmit="guardar(event)">
+            <fieldset class="content__form-fieldset">
+                <legend class="content__form-legend">Información del Anuncio</legend>
+                <div class="content__form-box">
+                    <label class="content__form-label">TITULO</label>
+                    <input class="content__form-input" name="titulo" type="text" id="titulo" placeholder="Título" />
+                    <label class="content__form-label">TRANSACCION:</label>
+                    <div class="content__form-transaccion">
+                        <div class="content__form-transaccion-box">
+                            <label class="content__form-label">VENTA</label>
+                            <input type="radio" id="venta" name="transaccion" value="venta" checked>
+                        </div>
+                        <div class="content__form-transaccion-box">
+                            <label class="content__form-label">ALQUILER</label>
+                            <input type="radio" id="alquiler" name="transaccion" value="alquiler">
+                        </div>
+                    </div>
+                    <label class="content__form-label">DESCRIPCION:</label>
+                    <input class="content__form-input" name='descripcion' id="descripcion" type="text" id="myText"
+                        placeholder="Descripción" />
+                    <label class="content__form-label">PRECIO:</label>
+                    <input class="content__form-input" name='precio' type="text" id="precio"
+                        placeholder="Precio" />
+                    <label class="content__form-label">CANTIDAD DE BANOS:</label>
+                    <input class="content__form-input" type="number" name="banos" min="1" id="banos" >
+                    <!-- <select name="banos" id="cars">
+                        <option value="uno">1</option>
+                        <option value="dos">2</option>
+                        <option value="tres">3</option>
+                        <option value="cuatro">4</option>
+                        <option value="mas">5+</option>
+                    </select> -->
+                    <label class="content__form-label">CANTIDAD DE DORMITORIOS</label>
+                    <input class="content__form-input" type="number" name="dormitorios" min="1" id="dormitorios">
+                </div>
+            </fieldset>
+            <button class="content__button-guardar" type="submit">Guardar</button>
+        </form>
+        <div class="content__table">
+            <table id='table'>
+                <tr>
+                    <th>Id</th>
+                    <th>Título</th>
+                    <th>Transacción</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Cantidad baños</th>
+                    <th>Cantidad dormitorios</th>
+                </tr>
+                <template>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </template>
+            </table>
+            <div class="content__box-buttons" id='box-buttons'>
+                <button class="content__box-buttons-editar" onclick="editar()">Editar</button>
+                <button class="content__box-buttons-eliminar" onclick="borrar()">Eliminar</button>
+                <button class="content__box-buttons-cancelar" onclick="cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
