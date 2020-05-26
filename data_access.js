@@ -81,15 +81,17 @@
         },
         update: function (cb, response, nuevoObjeto) {
             nuevoObjeto.active = "true";
-
+            console.log(nuevoObjeto)
             var array = new Array();
+            
             require('fs').readFile(__dirname + '\\data\\data.json', 'utf8', function (err, data) {
                 if (err) {
                     // error handling
                 }
                 array = JSON.parse(data);
+                console.log(array)
                 //obtengo index del id que necesito
-                var index = array.findIndex(function (obj) { return obj.id === nuevoObjeto.id || obj.id.toString() === nuevoObjeto.id; })
+                var index = array.findIndex(function (obj) { return obj.id === nuevoObjeto.id.toString() || obj.id.toString() === nuevoObjeto.id; })
                 array[index] = nuevoObjeto;
 
                 require('fs').writeFileSync(__dirname + '\\data\\data.json', JSON.stringify(array));

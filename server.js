@@ -37,6 +37,7 @@ app.post('/alta', (request, response) => {
 
 app.post('/baja', (request, response) => {
   console.log("Eliminando objeto");
+  console.log(request.body)
   db.delete(sendResponse, response, request.body.id);
 
 });
